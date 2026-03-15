@@ -8,14 +8,14 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
   Difficulty: Level and its range, and the attempts text on the left pane match the code.
-  Primary alert: (message in blue) text doesn’t update with the change to difficulty in the dropdown menu.
-  Developer Debug Info: The attempts variable is initialized to 1, and not 0. This leads to fewer attempts.
-  Danger alert: (message in red) text score doesn’t match the score in the Developer Debug Info.
-  Hint isn’t accurate.
-  Submit doesn’t update the Developer Debug Info until the next submit.
-  New game initializes attempts to 0, which is accurate.
-  New game only clears the Developer Debug Info, but doesn’t actually allow a new game, nor does it clear out the interface.
-  Changing the difficulty doesn’t start a new game.
+  1. Primary alert: (message in blue) text doesn’t update with the change to difficulty in the dropdown menu.
+  2. Developer Debug Info: The attempts variable is initialized to 1, and not 0. This leads to fewer attempts.
+  3. Danger alert: (message in red) text score doesn’t match the score in the Developer Debug Info.
+  4. Hint isn’t accurate.
+  5. Submit doesn’t update the Developer Debug Info until the next submit.
+  6. New game initializes attempts to 0, which is accurate.
+  7. New game only clears the Developer Debug Info, but doesn’t actually allow a new game, nor does it clear out the interface.
+  8. Changing the difficulty doesn’t start a new game.
 
 
 ---
