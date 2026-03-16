@@ -26,6 +26,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
+I used Claude.
+I didn't rely much on AI for the simple fixes.
+I relied on AI for writing pytest and the counter-tests after each fix.
 ---
 
 ## 3. Debugging and testing your fixes
@@ -35,11 +38,17 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+I tried my best to play the game again after each fix suggested and applied.
+The hint fix, for example, is what I remember for now.
+Writing and running tests is totally new to me. I didn't examine well due to time limitations, but I'm willing to re-read and learn.
+
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+I have a weakness in this. I must learn more about it.
+
 
 ---
 
@@ -49,3 +58,7 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
   - This could be a testing habit, a prompting strategy, or a way you used Git.
 - What is one thing you would do differently next time you work with AI on a coding task?
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+I want to write tests, write counter-tests, etc.
+I should next time never revert or go in cycles over and over.
+Nothing much changed.
