@@ -132,6 +132,63 @@ def test_line113_fix_info_message_uses_dynamic_range_for_hard():
     )
 
 
+# ── Tests for the update_score bugs (Too High even-attempt bonus + Win off-by-one) ──
+
+
+def test_too_high_even_attempt_rewarded_points():
+    # NOTE: This test intentionally fails — it is a bug demonstration.
+    # Bug: even-attempt "Too High" returned current_score + 5 (a reward)
+    # instead of a penalty. This hardcodes the buggy value to make the
+    # bad state visible. The regression tests below verify the fix.
+    BUGGY_RESULT = 100 + 5  # what the old even-branch returned
+    assert BUGGY_RESULT == 100 - 5, (
+        "Bug proved: Too High on an even attempt awarded +5 instead of -5. "
+        "A wrong guess should never increase the score."
+    )
+
+
+def test_too_high_even_attempt_now_penalizes():
+    # Fix: both even and odd attempts for "Too High" deduct 5 points.
+    # This test FAILS on the old code (returned +5) and PASSES with the fix.
+    result = update_score(100, "Too High", attempt_number=0)  # attempt 0 is even
+    assert result == 95, (
+        f"Too High on attempt 0 should deduct 5 (result=95) but got {result}. "
+        "Bug: even attempts were rewarded +5 instead of penalized -5."
+    )
+
+
+def test_too_high_and_too_low_symmetric():
+    # Fix: Too High and Too Low are treated identically (both -5).
+    # This test FAILS on the old code for even attempts and PASSES with the fix.
+    high_result = update_score(100, "Too High", attempt_number=0)
+    low_result  = update_score(100, "Too Low",  attempt_number=0)
+    assert high_result == low_result, (
+        f"Too High gave {high_result}, Too Low gave {low_result} — must be equal. "
+        "Bug: Too High had asymmetric even/odd logic that Too Low lacked."
+    )
+
+
+def test_win_off_by_one_on_first_guess():
+    # NOTE: This test intentionally fails — it is a bug demonstration.
+    # Bug: points = 100 - 10 * (attempt_number + 1) meant attempt 0 gave 90,
+    # not 100. This hardcodes the buggy value to prove it.
+    BUGGY_WIN_SCORE = 100 - 10 * (0 + 1)  # = 90, the old formula
+    assert BUGGY_WIN_SCORE == 100, (
+        f"Bug proved: first-guess win scored {BUGGY_WIN_SCORE} instead of 100. "
+        "The +1 in the exponent incorrectly penalised the very first attempt."
+    )
+
+
+def test_win_first_guess_now_scores_100():
+    # Fix: points = 100 - 10 * attempt_number (no +1).
+    # This test FAILS on the old code (returned 90) and PASSES with the fix.
+    result = update_score(0, "Win", attempt_number=0)
+    assert result == 100, (
+        f"Win on first guess (attempt 0) should score 100 but got {result}. "
+        "Bug: formula used (attempt_number + 1), docking 10 pts on the first guess."
+    )
+
+
 # ── Tests for the bug on lines 161-165 (missing str() cast on even attempts) ──
 
 
