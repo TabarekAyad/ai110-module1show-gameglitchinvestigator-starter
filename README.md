@@ -26,12 +26,16 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+  The game's purpose is to guess a number. Each level of difficulty has a range and attempts. The higher the difficuty, the less the attempts, and the smaller the range it should be.
 - [ ] Detail which bugs you found.
+  Please refer to reflections.md, part 1
 - [ ] Explain what fixes you applied.
+  Logic fixes mainly. Check the commit messages please. In the code files, look for the messages # FIX
 
 ## 📸 Demo
 
 - [ ] [Insert a screenshot of your fixed, winning game here]
+![Winning screenshot](image.png)
 
 ## 🚀 Stretch Features
 
